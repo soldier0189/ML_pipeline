@@ -15,7 +15,7 @@ def load_data(path: str) -> pd.DataFrame:
 
 def feature_engineering(df: pd.DataFrame):
     df["Tag"] = df["Tag"].fillna("")
-    tfidf = TfidfVectorizer(stop_words='english', max_features= params["tfidf"]["max_feaatures"])
+    tfidf = TfidfVectorizer(stop_words='english', max_features= params["tfidf"]["max_features"])
     tfidf_matrix = tfidf.fit_transform(df['Tag'])
     similarity = cosine_similarity(tfidf_matrix)
     return similarity, tfidf

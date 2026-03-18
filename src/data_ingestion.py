@@ -8,6 +8,7 @@ def load_data(path: str) -> pd.DataFrame:
 
 def pre_processing(df: pd.DataFrame) -> pd.DataFrame:
     df = df[["MAL_ID","Name_x","Genres_x","sypnopsis","Score_y"]]
+    
     df["Tag"] = df["Genres_x"] +" "+ df["sypnopsis"]
     df = df.drop(columns=["Genres_x","sypnopsis"])
     df = df.dropna()
@@ -22,8 +23,11 @@ def save_data(df: pd.DataFrame, path: str):
     print("Data saved successfully!")
 
 def main():
-    data_path = r".\experiments\anime_with_synopsis.csv"
-    df = load_data(data_path)
+    data_path1 = r"./experiments/anime.csv"
+    data_path2 = r"./experiments/anime_with_synopsis.csv"
+    anime = load_data(data_path1)
+    sys = load_data(data_path2)
+    df = anime.merge(sys,on="MAL_ID")
     df = pre_processing(df)
     df_path = r".\data\raw\data.csv"
     save_data(df, df_path)

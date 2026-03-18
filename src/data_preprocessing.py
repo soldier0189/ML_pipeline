@@ -31,7 +31,7 @@ def preprocessing(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def save_data(df: pd.DataFrame, path: str):
-    os.makedirs(path, exist_ok=True)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     df.to_csv(path, index=False)
 
 def main():

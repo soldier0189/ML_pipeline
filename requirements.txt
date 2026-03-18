@@ -4,4 +4,7 @@ scikit-learn
 os
 nltk
 pickle
-
+dvc
+mlflow
+pytest
+streamlit
